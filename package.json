@@ -1,0 +1,8 @@
+{
+  "name": "audio-denoiser",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.3"
+  }
+}

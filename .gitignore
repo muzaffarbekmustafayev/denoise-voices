@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Output files
+uz/clips_clean/
+
+# Input audio files - dataset
+uz/clips/
+*.mp3
+
+# FFmpeg binary (200MB)
+ffmpeg.exe
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
