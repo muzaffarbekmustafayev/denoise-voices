@@ -34,14 +34,12 @@ for (const file of mp3Files) {
     await new Promise((resolve, reject) => {
         ffmpeg(inputPath)
             .audioFilters([
-                'highpass=f=200',
-                'lowpass=f=3000',
                 'afftdn=nf=-25',
-                'anlmdn=s=10:p=0.002:r=0.002',
-                'volume=1.5'
+                'afwtdn',
+                'loudnorm=I=-16:TP=-1.5:LRA=11'
             ])
             .audioCodec('libmp3lame')
-            .audioBitrate('128k')
+            .audioBitrate('192k')
             .on('end', () => {
                 processed++;
                 console.log(`[${processed}/${total}] Processed: ${file}`);

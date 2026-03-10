@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# denoise-voices
-=======
 # Audio Denoiser
 
 Audio fayllarni shovqindan tozalash uchun Node.js dasturi. FFmpeg asosida ishlab, ovozli yozuvlardan turli xil shovqinlarni olib tashlaydi.
@@ -57,4 +54,3 @@ denoise/
 ## Litsenziya
 
 MIT
->>>>>>> 580a5a5 (Initial commit: Audio denoiser tool)
