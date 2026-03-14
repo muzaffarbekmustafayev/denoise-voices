@@ -1,18 +1,18 @@
-# Audio Denoiser
+# Audio Denoiser v2.0
 
-Audio fayllarni shovqindan tozalash uchun Node.js dasturi. FFmpeg asosida ishlab, ovozli yozuvlardan turli xil shovqinlarni olib tashlaydi.
+Audio fayllarni shovqindan tozalash uchun kuchaytirilgan Node.js dasturi. Parallel qayta ishlash va progress tracking imkoniyatlariga ega.
 
-## Xususiyatlar
+## Yangiliklar (v2.0)
 
-- Avtomatik batch processing - bir nechta faylni bir vaqtda qayta ishlash
-- Kuchli shovqin filtrlari kombinatsiyasi
-- Ovoz sifatini yaxshilash
-- Progress tracking - jarayon haqida ma'lumot
+- **Parallel Processing** - Bir vaqtning o'zida bir nechta faylni qayta ishlash (CPU yadrolari soniga qarab).
+- **Progress Tracking** - Chiroyli progress bar va real-vaqtda holat.
+- **Smart Skip** - Oldin qayta ishlangan fayllarni avtomatik o'tkazib yuborish.
+- **Improved Logging** - Chalk kutubxonasi yordamida rangli va aniq xabarlar.
 
 ## Talablar
 
 - Node.js 18 yoki undan yuqori
-- FFmpeg (loyihada mavjud)
+- FFmpeg (tizimda o'rnatilgan bo'lishi tavsiya etiladi)
 
 ## O'rnatish
 
@@ -22,35 +22,44 @@ npm install
 
 ## Ishlatish
 
-1. Audio fayllarni `uz/clips` papkasiga joylashtiring
+1. Audio fayllarni `uz/clips` papkasiga joylashtiring.
 2. Dasturni ishga tushiring:
 
 ```bash
 node denoise.js
 ```
 
-3. Tozalangan fayllar `uz/clips_clean` papkasida paydo bo'ladi
+**Barcha fayllarni qaytadan tozalash (overwrite):**
+```bash
+node denoise.js --force
+```
 
-## Qo'llaniladigan filtrlar
+3. Tozalangan fayllar `uz/clips_clean` papkasida paydo bo'ladi.
 
-- **Highpass filter (200Hz)** - past chastotali shovqin va gumbirash
-- **Lowpass filter (3000Hz)** - yuqori chastotali shovqin va shivirlash
-- **FFT Denoise** - spektral shovqin kamaytirish
-- **Adaptive NLM Denoise** - adaptiv shovqin filtri
-- **Volume normalization** - ovoz balandligini optimallashtirish
+## Qo'llaniladigan filtrlar (Kuchaytirilgan)
+
+- **Highpass (200Hz)** - Past chastotali gumburlashlarni kesish.
+- **Lowpass (7000Hz)** - Yuqori chastotali shivirlashlarni kesish.
+- **FFT Denoise (85%)** - Spektral shovqinni agressiv kamaytirish.
+- **Adaptive NLM** - Murakkab fon shovqinlarini tozalash.
+- **Noise Gate** - Ovoz yo'q vaqtlardagi jimlikni (background hiss) butunlay tozalash.
+- **Loudness Normalization** - Ovoz balandligini standartlashtirish.
+
 
 ## Loyiha strukturasi
 
 ```
-denoise/
-├── denoise.js          # Asosiy dastur
-├── ffmpeg.exe          # FFmpeg binary
+denoise-voices/
+├── denoise.js          # Asosiy dastur (Parallel processing)
 ├── uz/
-│   ├── clips/          # Kiruvchi audio fayllar
+│   ├── clips/          # Kiruvchi audio fayllar (.mp3)
 │   └── clips_clean/    # Tozalangan audio fayllar
-└── package.json
+├── node_modules/
+├── package.json
+└── README.md
 ```
 
 ## Litsenziya
 
 MIT
+

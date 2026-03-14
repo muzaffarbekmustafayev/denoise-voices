@@ -2,7 +2,15 @@
   "name": "audio-denoiser",
   "version": "1.0.0",
   "type": "module",
+  "scripts": {
+    "start": "node denoise.js",
+    "verify": "node verify.js"
+  },
   "dependencies": {
-    "fluent-ffmpeg": "^2.1.3"
+
+    "chalk": "^5.6.2",
+    "cli-progress": "^3.12.0",
+    "fluent-ffmpeg": "^2.1.3",
+    "p-limit": "^7.3.0"
   }
 }
