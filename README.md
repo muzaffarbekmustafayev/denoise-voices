@@ -1,18 +1,11 @@
-# Audio Denoiser v2.0
+# Audio Denoiser
 
-Audio fayllarni shovqindan tozalash uchun kuchaytirilgan Node.js dasturi. Parallel qayta ishlash va progress tracking imkoniyatlariga ega.
-
-## Yangiliklar (v2.0)
-
-- **Parallel Processing** - Bir vaqtning o'zida bir nechta faylni qayta ishlash (CPU yadrolari soniga qarab).
-- **Progress Tracking** - Chiroyli progress bar va real-vaqtda holat.
-- **Smart Skip** - Oldin qayta ishlangan fayllarni avtomatik o'tkazib yuborish.
-- **Improved Logging** - Chalk kutubxonasi yordamida rangli va aniq xabarlar.
+MP3 audio fayllarni shovqindan tozalash uchun Node.js dasturi. Parallel qayta ishlash va progress tracking qo'llab-quvvatlanadi.
 
 ## Talablar
 
-- Node.js 18 yoki undan yuqori
-- FFmpeg (tizimda o'rnatilgan bo'lishi tavsiya etiladi)
+- Node.js 18+
+- FFmpeg
 
 ## O'rnatish
 
@@ -22,44 +15,42 @@ npm install
 
 ## Ishlatish
 
-1. Audio fayllarni `uz/clips` papkasiga joylashtiring.
-2. Dasturni ishga tushiring:
-
 ```bash
+# Fayllarni uz/clips/ ga joylashtiring, so'ng:
 node denoise.js
-```
 
-**Barcha fayllarni qaytadan tozalash (overwrite):**
-```bash
+# Oldin qayta ishlangan fayllarni ham qayta tozalash:
 node denoise.js --force
+
+# Natijalarni tekshirish:
+node verify.js
 ```
 
-3. Tozalangan fayllar `uz/clips_clean` papkasida paydo bo'ladi.
+Tozalangan fayllar `uz/clips_clean/` papkasida saqlanadi.
 
-## Qo'llaniladigan filtrlar (Kuchaytirilgan)
+## Filtrlar
 
-- **Highpass (200Hz)** - Past chastotali gumburlashlarni kesish.
-- **Lowpass (7000Hz)** - Yuqori chastotali shivirlashlarni kesish.
-- **FFT Denoise (85%)** - Spektral shovqinni agressiv kamaytirish.
-- **Adaptive NLM** - Murakkab fon shovqinlarini tozalash.
-- **Noise Gate** - Ovoz yo'q vaqtlardagi jimlikni (background hiss) butunlay tozalash.
-- **Loudness Normalization** - Ovoz balandligini standartlashtirish.
+| Filtr | Vazifasi |
+|-------|----------|
+| Highpass 200Hz | Past chastotali gumburlash |
+| Lowpass 7000Hz | Yuqori chastotali shivirlash |
+| FFT Denoise 85% | Spektral shovqin |
+| Adaptive NLM | Murakkab fon shovqini |
+| Noise Gate | Jimlikdagi fon shivirlashi |
+| Loudness Norm | Ovoz balandligini standartlashtirish |
 
-
-## Loyiha strukturasi
+## Struktura
 
 ```
 denoise-voices/
-├── denoise.js          # Asosiy dastur (Parallel processing)
+├── denoise.js        # Asosiy dastur
+├── verify.js         # Natijalarni tekshirish
 ├── uz/
-│   ├── clips/          # Kiruvchi audio fayllar (.mp3)
-│   └── clips_clean/    # Tozalangan audio fayllar
-├── node_modules/
-├── package.json
-└── README.md
+│   ├── clips/        # Kiruvchi fayllar (.mp3)   ← gitignore
+│   └── clips_clean/  # Tozalangan fayllar        ← gitignore
+└── package.json
 ```
 
 ## Litsenziya
 
 MIT
-
