@@ -1,5 +1,5 @@
 node_modules/
-
+* text=auto eol=lf
 # Audio fayllar (katta hajm)
 uz/clips/
 uz/clips_clean/

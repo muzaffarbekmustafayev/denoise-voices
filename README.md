@@ -1,56 +1,56 @@
 # Audio Denoiser
 
-MP3 audio fayllarni shovqindan tozalash uchun Node.js dasturi. Parallel qayta ishlash va progress tracking qo'llab-quvvatlanadi.
+A Node.js tool for denoising MP3 audio files with parallel processing and progress tracking.
 
-## Talablar
+## Requirements
 
 - Node.js 18+
 - FFmpeg
 
-## O'rnatish
+## Installation
 
 ```bash
 npm install
 ```
 
-## Ishlatish
+## Usage
 
 ```bash
-# Fayllarni uz/clips/ ga joylashtiring, so'ng:
+# Place your files in uz/clips/, then run:
 node denoise.js
 
-# Oldin qayta ishlangan fayllarni ham qayta tozalash:
+# Force reprocess already cleaned files:
 node denoise.js --force
 
-# Natijalarni tekshirish:
+# Verify results:
 node verify.js
 ```
 
-Tozalangan fayllar `uz/clips_clean/` papkasida saqlanadi.
+Cleaned files are saved to `uz/clips_clean/`.
 
-## Filtrlar
+## Filters
 
-| Filtr | Vazifasi |
-|-------|----------|
-| Highpass 200Hz | Past chastotali gumburlash |
-| Lowpass 7000Hz | Yuqori chastotali shivirlash |
-| FFT Denoise 85% | Spektral shovqin |
-| Adaptive NLM | Murakkab fon shovqini |
-| Noise Gate | Jimlikdagi fon shivirlashi |
-| Loudness Norm | Ovoz balandligini standartlashtirish |
+| Filter | Purpose |
+|--------|---------|
+| Highpass 200Hz | Removes low-frequency rumble |
+| Lowpass 7000Hz | Removes high-frequency hiss |
+| FFT Denoise 85% | Spectral noise reduction |
+| Adaptive NLM | Complex background noise |
+| Noise Gate | Silence background hiss |
+| Loudness Norm | Normalizes audio loudness |
 
-## Struktura
+## Project Structure
 
 ```
 denoise-voices/
-├── denoise.js        # Asosiy dastur
-├── verify.js         # Natijalarni tekshirish
+├── denoise.js        # Main script
+├── verify.js         # Result verification
 ├── uz/
-│   ├── clips/        # Kiruvchi fayllar (.mp3)   ← gitignore
-│   └── clips_clean/  # Tozalangan fayllar        ← gitignore
+│   ├── clips/        # Input files (.mp3)        ← gitignore
+│   └── clips_clean/  # Cleaned output files      ← gitignore
 └── package.json
 ```
 
-## Litsenziya
+## License
 
 MIT
